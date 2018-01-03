@@ -8,16 +8,23 @@
 							 <div class="col-lg-7" style="padding-bottom:120px">
 	                        <form action="" method="POST">
 	                        	{{csrf_field()}}
+	                        	<div class="form-group">
+	                                <label>Danh mục : </label>
+	                                <select name="select" class="form-control">
+	                                	<option selected="">--- Chọn Loại Danh Mục Sản Phẩm --</option>
+	                                	@foreach($category as $cat)
+	                                		<option value="{{$cat->id}}">-- {{ $cat->name}}</option>
+	                                	@endforeach
+	                                	
+	                                	
+	                                </select>
+	                            </div>
 	                            <div class="form-group">
 	                                <label>Tên Sản Phẩm : </label>
 	                                <input class="form-control" name="txtname"  value="" />
 	                                <p style="color: red">{{ $errors->first('txtname') }}</p>
 	                            </div>
-	                            <div class="form-group">
-	                                <label>Danh mục : </label>
-	                                <input class="form-control" name="txtname"  value="" />
-	                                <p style="color: red">{{ $errors->first('txtname') }}</p>
-	                            </div>
+	                            
 	                            <div class="form-group">
 	                                <label>Miêu tả : </label>
 	                                <textarea class="form-control" name="description"  value="" ></textarea> 
@@ -25,18 +32,18 @@
 	                            </div>
 	                            <div class="form-group">
 	                                <label>giá: </label>
-	                                <input class="form-control" name="txtname"  value="" />
-	                                <p style="color: red">{{ $errors->first('txtname') }}</p>
+	                                <input class="form-control" name="price"  value="" />
+	                                <p style="color: red">{{ $errors->first('price') }}</p>
 	                            </div>
 	                            <div class="form-group">
 	                                <label>Sale: </label>
-	                                <input class="form-control" name="txtname"  value="" />
-	                                <p style="color: red">{{ $errors->first('txtname') }}</p>
+	                                <input class="form-control" name="sale"  value="" />
+	                                <p style="color: red">{{ $errors->first('sale') }}</p>
 	                            </div>
 	                            <div class="form-group">
 	                                <label>Số Lượng : </label>
-	                                <input class="form-control" name="txtname"  value="" />
-	                                <p style="color: red">{{ $errors->first('txtname') }}</p>
+	                                <input class="form-control" name="qty"  value="" />
+	                                <p style="color: red">{{ $errors->first('qty') }}</p>
 	                            </div>
 	                            <div class="form-group">
 	                                <label>Image: </label>
@@ -49,8 +56,8 @@
 	                            </div>
 	                            <div class="form-group">
 	                                <label>Trạng Thái : </label>
-	                                <input class="form-control" name="txtname"  value="" />
-	                                <p style="color: red">{{ $errors->first('txtname') }}</p>
+	                                <input class="form-control" name="status"  value="" />
+	                                <p style="color: red">{{ $errors->first('status') }}</p>
 	                            </div>
 	                            
 	                            

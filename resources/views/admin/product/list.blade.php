@@ -23,11 +23,11 @@
 											<th>Tên Sản Phẩm</th>
 											<th>Miêu Tả</th>
 											<th>Giá</th>
-											<th>sale</th>
-											<th>so lượng</th>
+											<th>Sale</th>
+											<th>Số lượng</th>
 											<th>hình ảnh</th>
-											<th>nội dung</th>
-											<th>trạng thái</th>
+											<th>Nội dung</th>
+											<th>Trạng thái</th>
 											<th>Stock</th>
 											<th>Xóa</th>
 											<th>Sửa</th>

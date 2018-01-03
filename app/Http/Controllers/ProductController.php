@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Product;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -20,7 +21,8 @@ class ProductController extends Controller
     }
     public function create()
     {
-        return view('admin.product.create');
+        $category = DB::table('category')->get();
+        return view('admin.product.create',['category'=>$category]);
     }
     public function store(Request $request)
     {
