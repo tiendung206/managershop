@@ -4,8 +4,7 @@
 				<div class="graphs">
 					<h3 class="blank1">Danh Mục Sản Phẩm</h3> 
 					 <div class="xs tabls">
-					<h4 ><a class="alert alert-primary" href="{{url('category/create')}}">Thêm Danh Mục</a></h4>
-
+					
 
                     @if(session('success'))
                      <div class="alert alert-success">
@@ -13,6 +12,7 @@
                      </div>                       
                      @endif 
 						<div class="panel panel-primary" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+							<h4 class="social_icons-left" ><a class="alert alert-primary" href="{{url('category/create')}}">Thêm Danh Mục</a></h4>
 							
 							<div class="panel-body no-padding" style="display: block;">
 								<table class="table table-striped  table-bordered" align="center">
