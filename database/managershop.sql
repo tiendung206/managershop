@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 03, 2018 lúc 01:38 PM
+-- Thời gian đã tạo: Th1 08, 2018 lúc 01:38 PM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.2.0
 
@@ -43,7 +43,7 @@ INSERT INTO `category` (`id`, `name`) VALUES
 (4, 'Samsung'),
 (8, 'Acer'),
 (9, 'Dell'),
-(10, 'Diện thoại');
+(10, 'Điện thoại');
 
 -- --------------------------------------------------------
 
@@ -99,6 +99,13 @@ CREATE TABLE `migrations` (
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -112,6 +119,18 @@ CREATE TABLE `orders` (
   `datetime` date NOT NULL,
   `total` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `password_resets`
+--
+
+CREATE TABLE `password_resets` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -133,6 +152,24 @@ CREATE TABLE `product` (
   `content` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Đang đổ dữ liệu cho bảng `product`
+--
+
+INSERT INTO `product` (`id`, `cat_id`, `name`, `description`, `price`, `sale`, `quanlity`, `status`, `stock`, `image`, `content`) VALUES
+(1, 1, 'HP compart', 'Mô ta chị tiết', '20000000', '0', '12', '0', '0', '1.jfif', '0000'),
+(2, 2, 'ád', '<p>&aacute;d</p>', '111111', 'qqq', 'qqq', '111', 'qqq', '2.jfif', '<p>qqqqq</p>'),
+(3, 2, 'ád', '<p>&aacute;d</p>', '222222', '123123123', 'qqq', '111', 'qqq', '3.jfif', '<p>qqqqq</p>'),
+(4, 2, 'ád', '<p>&aacute;d</p>', '123123123', '123123123', 'qqq', '111', 'qqq', '4.jfif', '<p>qqqqq</p>'),
+(5, 9, 'dell inprison 7559', '<p>core&nbsp;i7</p>', '18000000', '0', '10', 'còn hàng', '1', '7559.jfif', '<p>đ&acirc;y l&agrave; sản phẩm ra năm đầu 2017</p>'),
+(6, 4, '111', '<p>1111</p>', '111', '111', '111', '111', '1111', '7559.jfif', '<p>1111</p>'),
+(7, 4, '111', '<p>1111</p>', '111', '111', '111', '111', '1111', '7559.jfif', '<p>1111</p>'),
+(8, 1, '11', '<p>123123</p>', '1111111111111', '1', '1111', '123123', '111', '7559.jfif', '<p>123123</p>'),
+(9, 1, '123123', '<p>22</p>', '1', '2', '22', '22', '22', '3.jfif', '<p>222</p>'),
+(10, 2, '123', '<p>1111</p>', '121111', '111111', '111', '1111', '1111', '7559.jfif', '<p>111</p>'),
+(11, 2, '111111', '<p>1111</p>', '11111', '1111', '1111', '1111', '111', '7559.jfif', '<p>1111</p>'),
+(12, 2, 'qưeq', '<p>123</p>', '123', '123', '123', '123', '123', '7559.jfif', '<p>123</p>');
+
 -- --------------------------------------------------------
 
 --
@@ -140,10 +177,11 @@ CREATE TABLE `product` (
 --
 
 CREATE TABLE `users` (
-  `id` int(8) UNSIGNED NOT NULL,
+  `id` int(8) NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `level` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -153,10 +191,9 @@ CREATE TABLE `users` (
 -- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'chien', 'chiendv92@gmail.com', '123123123', NULL, NULL, NULL),
-(2, 'ccc', 'chiendv1992@gmail.com', '$2y$10$8DL7E3IMfN86TgBxLFSid.mz83ueX2qpwibtmLpT1BByDe0m2mdpm', 'uVxSXEi3PFhA1V3S785W7haP7ZtVOZNlzZMOupz49ycZttGaQ2lH0MriLZVf', '2018-01-02 20:41:28', '2018-01-02 20:41:28'),
-(3, 'chien', 'chien@gmail.com', '$2y$10$TsPmsjgkknPgaqKTH3kynu87/6QHxNK1JMLcITrwVVW/AGkkjm0Jm', 'x58QzEJhoKU0uWcJkagHgFXEnakKpHfiKuSiMrvL4bwCmOyUXqBCzFcGeIRC', '2018-01-02 20:43:14', '2018-01-02 20:43:14');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'do chien', 'chiendv92@gmail.com', '123123123', '1', '12', NULL, NULL),
+(5, 'Đỗ Văn Chiến', 'admin@gmail.com', '9c2dc042a37d2312c5803e0114eb8804', '1', NULL, '2018-01-07 20:26:01', '2018-01-07 20:26:01');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -216,8 +253,7 @@ ALTER TABLE `product`
 -- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id` (`id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -239,19 +275,19 @@ ALTER TABLE `image_produc`
 -- AUTO_INCREMENT cho bảng `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -274,7 +310,8 @@ ALTER TABLE `image_produc`
 -- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `product`
