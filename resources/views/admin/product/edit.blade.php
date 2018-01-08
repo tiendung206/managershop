@@ -20,7 +20,7 @@
 	                            </div>
 	                            <div class="form-group">
 	                                <label>Tên Sản Phẩm : </label>
-	                                <input class="form-control" name="txtname"  value="" />
+	                                <input class="form-control" name="txtname"  value="old('txtname',isset($product) ? $category['name'] : null)" />
 	                                <p style="color: red">{{ $errors->first('txtname') }}</p>
 	                            </div>
 	                            <div class="form-group">

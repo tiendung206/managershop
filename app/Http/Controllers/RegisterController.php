@@ -35,7 +35,7 @@ class RegisterController extends Controller
         $users = new User();
         $users->name = $request->username;
         $users->email = $request->email;
-        $users->password =md5($request->password);
+        $users->password = bcrypt($request->password);
         $users->level = 1;       
         $users->save();
         return redirect('category/list')->with('success','Bạn đã thêm thành công');

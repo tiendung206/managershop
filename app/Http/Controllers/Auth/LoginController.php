@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/dashboard';
 
     /**
      * Create a new controller instance.
@@ -51,11 +51,10 @@ class LoginController extends Controller
             'email' => $request->email, 
             'password' => $request->password,
             'level' => 1
-        ];   
-        dd($login);
-        if (Auth::attempt($login)) 
+        ];  
+        if (Auth::attempt($login) 
         {
-            return redirect()->route('dashboard');
+            return redirect('/dashboard');
         }
         else
         {

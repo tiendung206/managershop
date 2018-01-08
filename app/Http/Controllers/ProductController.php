@@ -20,9 +20,8 @@ class ProductController extends Controller
     public function index()
     {
         $phantrang = Product::paginate(5);
-        $product = Product::all();
         $data = Product::with('category')->get();
-        return view('admin.product.list',['data'=>$data,'product'=>$product,'phantrang'=>$phantrang]);
+        return view('admin.product.list',['data'=>$data,'phantrang'=>$phantrang]);
     }
     public function create()
     {
@@ -53,17 +52,19 @@ class ProductController extends Controller
         $product->image =  $file_name ;
         $product->save();
         // detail image
-        $product_id=$product->id;    
+        $product_id = $product->id;    
 
         return redirect('product/list')->with(['success','Bạn Đã Thêm Thành Công ! ']);
     }
     public function show($id)
     {
-        //
+        
     }
     public function edit($id)
     {
-        //
+        $product=Product::find($id)->toArray();
+        return view('admin.product.edit',['product'=>$product]);
+
     }
     public function update(Request $request, $id)
     {
