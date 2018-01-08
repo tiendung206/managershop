@@ -32,13 +32,19 @@ class RegisterController extends Controller
                 'password.required' =>' Bạn Chưa Mật Khẩu',
                 'password.min' =>' Mật Khẩu Ít Nhất Là 8 Ký Tự'
             ]);
+
+
         $users = new User();
         $users->name = $request->username;
         $users->email = $request->email;
+<<<<<<< HEAD
         $users->password = bcrypt($request->password);
+=======
+        $users->password =bcrypt($request->password);
+>>>>>>> 6b08a02b4925a8c081381c2b507a85289cd069d3
         $users->level = 1;       
         $users->save();
-        return redirect('category/list')->with('success','Bạn đã thêm thành công');
+        return redirect('admin/login')->with('success','Bạn đã thêm thành công');
     }
 
    
