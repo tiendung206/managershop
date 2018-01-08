@@ -10,37 +10,10 @@ use App\Http\Requests\LoginRequest;
 use Validator;
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
     use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-
-        $this->middleware('guest')->except('logout');
-    }
-     public function getLogin()
+    public function getLogin()
     {
         return view('auth.login');
     }
@@ -52,16 +25,19 @@ class LoginController extends Controller
             'password' => $request->password,
             'level' => 1
         ];   
-        dd($login);
         if (Auth::attempt($login)) 
         {
-            return redirect()->route('dashboard');
+            return redirect('dashboard');
         }
         else
         {
             return redirect()->back();
         }
         
+    }
+    public function getLogout(){
+        Auth::logout();
+        return redirect()->route('login');
     }
     
 }
