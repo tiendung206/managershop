@@ -13,7 +13,6 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-<<<<<<< HEAD
     /**
      * Where to redirect users after login.
      *
@@ -31,10 +30,7 @@ class LoginController extends Controller
 
         $this->middleware('guest')->except('logout');
     }
-     public function getLogin()
-=======
     public function getLogin()
->>>>>>> 6b08a02b4925a8c081381c2b507a85289cd069d3
     {
         return view('auth.login');
     }
@@ -45,17 +41,11 @@ class LoginController extends Controller
             'email' => $request->email, 
             'password' => $request->password,
             'level' => 1
-<<<<<<< HEAD
+
         ];  
-        if (Auth::attempt($login) 
-        {
-            return redirect('/dashboard');
-=======
-        ];   
         if (Auth::attempt($login)) 
         {
             return redirect('dashboard');
->>>>>>> 6b08a02b4925a8c081381c2b507a85289cd069d3
         }
         else
         {
