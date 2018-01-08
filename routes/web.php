@@ -15,10 +15,24 @@
 	    return view('welcome');
 	});
 
-	Route::get('dashboard',function(){
-		return view ('admin.dashboard');
-	});
-	// 
+		Route::get('dashboard',function(){
+			return view ('admin.dashboard');
+		});
+		// Đăng nhập
+					
+			Route::get('admin/login','Auth\LoginController@getLogin');
+			Route::post('admin/login','Auth\LoginController@postLogin');		
+		
+
+
+
+		Route::group(['prefix'=>'admin'], function()
+		{
+
+			Route::get('register',['as'=>'auth.register','uses'=>'RegisterController@index']);
+			Route::post('register',['as'=>'auth.register','uses'=>'RegisterController@store']);
+					
+		});
 
 		// category
 		Route::group(['prefix'=>'category'], function()
@@ -50,8 +64,5 @@
 
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 

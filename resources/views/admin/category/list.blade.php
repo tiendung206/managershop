@@ -2,10 +2,18 @@
 @section('content')
 		<div id="page-wrapper">
 				<div class="graphs">
+<<<<<<< HEAD
 					<h3 class="blank1">Danh Mục Sản Phẩm</h3> 
 					 <div class="xs tabls">
 					
+=======
+					<div class="row">
+						<div class="col-md-10"><h3 class="blank1">Danh Mục Sản Phẩm</h3> </div>
+						<div class="col-md-2 social_icons-left"><h4 ><a class="alert alert-primary" href="{{url('category/create')}}">Thêm Danh Mục</a></h4></div>
+					</div>
+>>>>>>> c66b00670dbc7584b31df72c6f9b635eb23b018d
 
+					 <div class="xs tabls">
                     @if(session('success'))
                      <div class="alert alert-success">
                           {{session('success')}}

@@ -1,69 +1,45 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@extends('auth.layout')
+@section('auth')
+@section('title','Đăng Nhập')
+	<div id="page-wrapper" class="sign-in-wrapper">
+				<div class="graphs">
+					<div class="sign-in-form">
+						<div class="sign-in-form-top">
+							<p><span>Đăng Nhập</span> <a href="index.html">Quản Trị</a></p>
+						</div>
+					
+						<div class="signin">							
+							<form method="post" action="{{url('admin/login')}}">
+								{{csrf_field()}}
+							<div class="log-input">
+								<div class="log-input-left">
+								   <input type="text" name="email" class="user" placeholder="Nhập Email" />
+								   <p style="color: red">{{ $errors->first('email') }}</p>
+								</div>								
+								<div class="clearfix"> </div>
+							</div>
+							<div class="log-input">
+								<div class="log-input-left">
+								   <input type="password" name="password" class="lock" placeholder="Nhập Mật Khẩu"/>
+								   <p style="color: red">{{ $errors->first('password') }}</p>
+								</div>								
+								<div class="clearfix"> </div>
+							</div>
+							<div class="signin-rit">
+								<span class="checkbox1">
+									 <label class="checkbox"><input type="checkbox" name="checkbox" checked="">Ghi mật khẩu ?</label>
+								</span>
+								<p><a href="#">Quên Mật Khẩu</a> </p>
+								<div class="clearfix"> </div>
+							</div>
+							<input type="submit" value="Đăng Nhập">
+						</form>	 
+						</div>
+						<div class="new_people">
+							<h4>Chưa Là Thành Viên</h4><p></p>
+							<a href="{{url('admin/register')}}">Đăng Ký Ngay!</a>
+						</div>
+					</div>
+				</div>
+			</div>
 @endsection

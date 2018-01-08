@@ -1,77 +1,44 @@
-@extends('layouts.app')
+@extends('auth.layout')
+@section('auth')
+@section('title','Đăng Ký Thành Viên')
+<div id="page-wrapper" class="sign-in-wrapper">
+		<div class="graphs">
+			<div class="sign-up">
+				<div class="sign-in-form-top">
+				<p><span>Đăng Ký</span> </p>
+				</div>
+				<p class="creating"></p>
+				<div>
+					<form action="{{url('admin/register')}}" method="post">
+					{{csrf_field()}}
+						<h5>Thông tin cá nhân</h5>
+						<div class="sign-u">
+							<div class="sign-up1"><h4>Họ Tên (*) :</h4>	</div>
+							<div class="sign-up2"><input type="text" placeholder=" " name="username" /></div>
+							<p style="color: red">{{ $errors->first('username') }}</p>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="sign-u">
+							<div class="sign-up1"><h4>Email (*) :</h4></div>
+							<div class="sign-up2"><input type="text" placeholder=" " name="email" />	</div>
+							<p style="color: red">{{ $errors->first('email') }}</p>
+							<div class="clearfix"> </div>
+						</div>				
+						<div class="sign-u">
+							<div class="sign-up1"><h4>Mật khẩu (*) :</h4></div>
+							<div class="sign-up2"><input type="password" placeholder=" " name="password" />	</div>
 
-@section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+							<div class="clearfix"> </div>
+							<p style="color: red">{{ $errors->first('password') }}</p>
+						</div>
+						<div class="sub_home">
+							<div class="sub_home_left"><input type="submit" value="Đăng Ký	"></div>
+							<div class="sub_home_right"><p>Trở lại <a href="index.html">Trang Chủ</a></p></div>
+							<div class="clearfix"> </div>
+						</div>
+					</form>
+				</div>
+			</div>			
+		</div>
+	</div>
 @endsection
