@@ -12,4 +12,9 @@ class Product extends Model
 	protected $fillable=['name','description','price','sale','quanlity','status','stock','image','content'];
 
 	public $timestamps = false; 
+
+	public function category()
+	{
+		return $this->belongsTo('App\Category','cat_id');
+	}
 }
