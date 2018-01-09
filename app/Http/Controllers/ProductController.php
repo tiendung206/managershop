@@ -19,9 +19,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $phantrang = Product::paginate(5);
-        $data = Product::with('category')->get();
-        return view('admin.product.list',['data'=>$data,'phantrang'=>$phantrang]);
+        // $phantrang =  DB::table('product')->paginate(5);
+        $data = Product::with('category')->paginate(5);
+        return view('admin.product.list',['data'=>$data]);
     }
     public function create()
     {
@@ -62,16 +62,38 @@ class ProductController extends Controller
     }
     public function edit($id)
     {
-        $product=Product::find($id)->toArray();
-        return view('admin.product.edit',['product'=>$product]);
+        $category=Category::All();
+        $product=Product::find($id);
+        return view('admin.product.edit',['product'=>$product,'category'=>$category]);
 
     }
     public function update(Request $request, $id)
     {
-        //
+       $this-> validate($request,
+            [
+                'name'=>'required'
+            ],
+            [
+                'name.required' =>' Bạn Chưa Nhập Tên'
+            ]);
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->cat_id = $request->category;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->sale = $request->sale;
+        $product->quanlity = $request->qty;
+        $product->status = $request->status;
+        $product->stock = $request->stock;
+        $product->image = "7559.jfif";
+        $product->content = $request->content;     
+        $product->save();
+        return redirect('product/list')->with('success','Bạn đã Sửa thành công');
     }
     public function destroy($id)
     {
-        //
+         $product=Product::find($id);
+        $product->delete($id);
+        return redirect('product/list')->with('success','Bạn đã Xóa thành công');
     }
 }

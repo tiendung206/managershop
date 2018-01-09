@@ -48,9 +48,9 @@
 										</tr>
 									</thead>
 									<tbody>
-										<?php 
-											$stt=1;
-										 ?>
+										
+											<?php $stt=1  ?>
+										 
 										@foreach($data as $pro)
 											<tr>
 												<td>{{$stt++}}</td>
@@ -70,11 +70,8 @@
 										@endforeach
 									</tbody>
 								</table>
-								<div class="container">
-									<ul class="pagination">	    
-									    <li><a href="#">{{$phantrang->links()}}</a></li>
-									 </ul>
-								</div>
+								
+								{{ $data->links() }}
 							</div>
 
 						</div>
