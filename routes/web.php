@@ -22,7 +22,6 @@
 		{
 			Route::group(['prefix'=>'admin'], function()
 			{
-
 				Route::get('register',['as'=>'auth.register','uses'=>'RegisterController@index']);
 				Route::post('register',['as'=>'auth.register','uses'=>'RegisterController@store']);
 						
@@ -49,6 +48,7 @@
 			Route::group(['prefix'=>'product'], function()
 			{
 				Route::get('list',['as'=>'admin.product.list','uses'=>'ProductController@index']);
+				Route::post('list',['as'=>'admin.product.list','uses'=>'ProductController@index']);	
 
 				Route::get('create',['as'=>'admin.product.create','uses'=>'ProductController@create']);
 				Route::post('create',['as'=>'admin.product.store','uses'=>'ProductController@store']);
@@ -56,7 +56,9 @@
 				Route::get('edit/{id}',['as'=>'admin.product.edit','uses'=>'ProductController@edit']);
 				Route::post('edit/{id}',['as'=>'admin.product.update','uses'=>'ProductController@update']);
 				
-				Route::get('delete/{id}',['as'=>'admin.product.destroy','uses'=>'ProductController@destroy']);			
+				Route::get('delete/{id}',['as'=>'admin.product.destroy','uses'=>'ProductController@destroy']);
+
+
 			});
 		});
 		Route::get('/logout',['as'=>'getLogout', 'uses'=>'Auth\LoginController@getLogout']);

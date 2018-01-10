@@ -18,13 +18,15 @@
 							<div class="panel-body no-padding" style="display: block;">
 								<div class="row">
 									<div class="col-md-6">
-									    <div class="input-group">
-									      <input type="text" class="form-control">
-									      <span class="input-group-btn">
-									        <button class="btn btn-default" type="button">Tìm kiếm !</button>
+										<form action="{{url('product/list')}}" method="post">
+											{{csrf_field()}}
+											<div class="input-group">
+											    <input type="text" class="form-control" name="seach">
+											    <span class="input-group-btn">
+									        <button class="btn btn-default" type="submit">Tìm kiếm !</button>
 									      </span>
 									    </div><!-- /input-group -->
-
+										</form>	
 									  </div><!-- /.col-lg-6 -->
 									</div><!-- /.row -->
 									<div class="col-md-12">&nbsp</div>

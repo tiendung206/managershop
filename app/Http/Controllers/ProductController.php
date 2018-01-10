@@ -17,11 +17,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $phantrang =  DB::table('product')->paginate(5);
-        $data = Product::with('category')->paginate(5);
+        $product = new Product();
+        $seach=$request->seach;
+        $data = Product::where('name','like',"%$seach%")->paginate(5);
         return view('admin.product.list',['data'=>$data]);
+       
     }
     public function create()
     {
@@ -96,4 +98,9 @@ class ProductController extends Controller
         $product->delete($id);
         return redirect('product/list')->with('success','Bạn đã Xóa thành công');
     }
+    public function seach()
+    {
+
+    }
 }
+
