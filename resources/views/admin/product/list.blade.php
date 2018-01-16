@@ -21,7 +21,7 @@
 										<form action="{{url('product/list')}}" method="post">
 											{{csrf_field()}}
 											<div class="input-group">
-											    <input type="text" class="form-control" name="seach">
+											    <input type="text" class="form-control" name="seach" value="{{$seach}}">
 											    <span class="input-group-btn">
 									        <button class="btn btn-default" type="submit">Tìm kiếm !</button>
 									      </span>
@@ -40,11 +40,11 @@
 											<th>Mô Tả</th>
 											<th>Giá</th>
 											<th>Sale</th>
-											<th>Số lượng</th>
-											<th>hình ảnh</th>
-											<th>Nội dung</th>
+											<th>Số lượng</th>											
 											<th>Trạng thái</th>
 											<th>Stock</th>
+											<th>Hình ảnh</th>
+											<th>Nội dung</th>
 											<th>Xóa</th>
 											<th>Sửa</th>
 										</tr>
@@ -61,7 +61,13 @@
 												<td>{{$pro->description}}</td>
 												<td>{{Number_format($pro->price)}}</td>
 												<td>{{$pro->sale}}</td>
-												<td>{{$pro->quanlity}}</td>
+												<td>
+													@if($pro->quanlity>0)
+														{{$pro->quanlity}}
+													@else
+														{{ "hết hàng" }}
+													@endif
+													</td>
 												<td>{{$pro->status}}</td>
 												<td>{{$pro->stock}}</td>
 												<td><img src="{{url('upload/images/product/')}}/{{$pro->image}}" width="150px" height="150px"></td>	
