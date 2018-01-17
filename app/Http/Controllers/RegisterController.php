@@ -33,6 +33,14 @@ class RegisterController extends Controller
                 'password.min' =>' Mật Khẩu Ít Nhất Là 8 Ký Tự'
             ]);
 
+        $user = User::where('email',$request->email)->first();
+
+        // Check username available
+
+        if(isset($user)){
+            $errors = new MessageBag(['email' => 'Email is available']);
+            return redirect()->back()->withInput()->withErrors($errors);
+        }
 
         $users = new User();
         $users->name = $request->username;
