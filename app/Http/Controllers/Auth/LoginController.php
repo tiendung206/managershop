@@ -33,7 +33,7 @@ class LoginController extends Controller
         }
         else
         {
-            return redirect()->back();
+            return redirect()->back()->with('err','Đăng Nhập Không Thành Công');
         }
         
     }

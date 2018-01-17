@@ -7,10 +7,15 @@
 						<div class="sign-in-form-top">
 							<p><span>Đăng Nhập</span> <a href="index.html">Quản Trị</a></p>
 						</div>
-					
+						
 						<div class="signin">							
 							<form method="post" action="{{url('admin/login')}}">
 								{{csrf_field()}}
+							@if(session('err'))
+			                     <div class="alert alert-success">
+			                        	{{session('err')}}
+			                     </div>                       
+	                    	@endif 
 							<div class="log-input">
 								<div class="log-input-left">
 								   <input type="text" name="email" class="user" placeholder="Nhập Email" />
