@@ -13,6 +13,7 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
+
     public function getLogin()
     {
         return view('auth.login');
@@ -24,7 +25,8 @@ class LoginController extends Controller
             'email' => $request->email, 
             'password' => $request->password,
             'level' => 1
-        ];   
+
+        ];  
         if (Auth::attempt($login)) 
         {
             return redirect('dashboard');

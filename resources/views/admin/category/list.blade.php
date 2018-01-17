@@ -2,6 +2,7 @@
 @section('content')
 		<div id="page-wrapper">
 				<div class="graphs">
+
 					<div class="row">
 						<div class="col-md-10"><h3 class="blank1">Danh Mục Sản Phẩm</h3> </div>
 						<div class="col-md-2 social_icons-left"><h4 ><a class="alert alert-primary" href="{{url('category/create')}}">Thêm Danh Mục</a></h4></div>
@@ -15,8 +16,6 @@
                      </div>                       
                      @endif 
 						<div class="panel panel-primary" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
-							<h4 class="social_icons-left" ><a class="alert alert-primary" href="{{url('category/create')}}">Thêm Danh Mục</a></h4>
-							
 							<div class="panel-body no-padding" style="display: block;">
 								<table class="table table-striped  table-bordered" align="center">
 									<thead>
@@ -41,7 +40,7 @@
 										@endforeach
 									</tbody>
 								</table>
-
+							{{ $category->links() }}
 							</div>
 
 						</div>
