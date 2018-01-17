@@ -9,6 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
+
 */		Route::get('/', function () {
 			    return view('welcome');
 			});
@@ -18,7 +19,9 @@
 		Route::get('admin/login',['as'=>'login', 'uses'=>'Auth\LoginController@getLogin']);
 		Route::post('admin/login','Auth\LoginController@postLogin');
 
+
 		Route::group(['middleware'=>'auth'], function()
+
 		{
 			Route::group(['prefix'=>'admin'], function()
 			{
@@ -66,6 +69,7 @@
 				Route::get('list',['as'=>'admin.order.list','uses'=>'OderController@index']);
 			});
 		});
+
 		Route::get('/logout',['as'=>'getLogout', 'uses'=>'Auth\LoginController@getLogout']);
 
 
