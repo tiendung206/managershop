@@ -11,16 +11,11 @@
 |
 */
 	
-		Route::get('dashboard',function(){
-			return view ('admin.dashboard');
-		});
+		
 		// Đăng nhập
 					
-			Route::get('admin/login',['as'=>'login', 'uses'=>'Auth\LoginController@getLogin']);
-			Route::post('admin/login','Auth\LoginController@postLogin');		
-		
-
-
+		Route::get('admin/login',['as'=>'login', 'uses'=>'Auth\LoginController@getLogin']);
+		Route::post('admin/login','Auth\LoginController@postLogin');
 
 		Route::group(['prefix'=>'admin'], function()
 		{
@@ -30,34 +25,43 @@
 					
 		});
 
-		// category
-		Route::group(['prefix'=>'category'], function()
-		{
-			Route::get('list',['as'=>'admin.category.list','uses'=>'CategoryController@index']);
+		Route::group(['middleware' => 'auth'], function () {
 
-			Route::get('create',['as'=>'admin.category.create','uses'=>'CategoryController@create']);
-			Route::post('create',['as'=>'admin.category.store','uses'=>'CategoryController@store']);
+			Route::get('dashboard',function(){
+				return view ('admin.dashboard');
+			});
 
-			Route::get('edit/{id}',['as'=>'admin.category.edit','uses'=>'CategoryController@edit']);
-			Route::post('edit/{id}',['as'=>'admin.category.update','uses'=>'CategoryController@update']);
-			
-			Route::get('delete/{id}',['as'=>'admin.category.destroy','uses'=>'CategoryController@destroy']);			
-		});
+			// category
+			Route::group(['prefix'=>'category'], function()
+			{
+				Route::get('list',['as'=>'admin.category.list','uses'=>'CategoryController@index']);
 
-		// product
-		Route::group(['prefix'=>'product'], function()
-		{
-			Route::get('list',['as'=>'admin.product.list','uses'=>'ProductController@index']);
+				Route::get('create',['as'=>'admin.category.create','uses'=>'CategoryController@create']);
+				Route::post('create',['as'=>'admin.category.store','uses'=>'CategoryController@store']);
 
-			Route::get('create',['as'=>'admin.product.create','uses'=>'ProductController@create']);
-			Route::post('create',['as'=>'admin.product.store','uses'=>'ProductController@store']);
+				Route::get('edit/{id}',['as'=>'admin.category.edit','uses'=>'CategoryController@edit']);
+				Route::post('edit/{id}',['as'=>'admin.category.update','uses'=>'CategoryController@update']);
+				
+				Route::get('delete/{id}',['as'=>'admin.category.destroy','uses'=>'CategoryController@destroy']);			
+			});
 
-			Route::get('edit/{id}',['as'=>'admin.product.edit','uses'=>'ProductController@edit']);
-			Route::post('edit/{id}',['as'=>'admin.product.update','uses'=>'ProductController@update']);
-			
-			Route::get('delete/{id}',['as'=>'admin.product.destroy','uses'=>'ProductController@destroy']);			
-		});
+			// product
+			Route::group(['prefix'=>'product'], function()
+			{
+				Route::get('list',['as'=>'admin.product.list','uses'=>'ProductController@index']);
 
+				Route::get('create',['as'=>'admin.product.create','uses'=>'ProductController@create']);
+				Route::post('create',['as'=>'admin.product.store','uses'=>'ProductController@store']);
+
+				Route::get('edit/{id}',['as'=>'admin.product.edit','uses'=>'ProductController@edit']);
+				Route::post('edit/{id}',['as'=>'admin.product.update','uses'=>'ProductController@update']);
+				
+				Route::get('delete/{id}',['as'=>'admin.product.destroy','uses'=>'ProductController@destroy']);			
+			});
+
+		});		
+		
+		
 		Route::get('/logout',['as'=>'getLogout', 'uses'=>'Auth\LoginController@getLogout']);
 
 
