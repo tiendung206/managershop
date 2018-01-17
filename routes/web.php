@@ -19,16 +19,16 @@
 		Route::get('admin/login',['as'=>'login', 'uses'=>'Auth\LoginController@getLogin']);
 		Route::post('admin/login','Auth\LoginController@postLogin');
 
-
-		Route::group(['middleware'=>'auth'], function()
-
-		{
-			Route::group(['prefix'=>'admin'], function()
+		Route::group(['prefix'=>'admin'], function()
 			{
 				Route::get('register',['as'=>'auth.register','uses'=>'RegisterController@index']);
 				Route::post('register',['as'=>'auth.register','uses'=>'RegisterController@store']);
 						
 			});
+
+		Route::group(['middleware'=>'auth'], function()
+
+		{
 			// bang dieu khien
 			Route::get('dashboard',function(){
 				return view ('admin.dashboard');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\MessageBag;  
 
 class RegisterController extends Controller
 {
@@ -38,7 +39,7 @@ class RegisterController extends Controller
         // Check username available
 
         if(isset($user)){
-            $errors = new MessageBag(['email' => 'Email is available']);
+            $errors = new MessageBag(['email' => 'Email đã tồn tại']);
             return redirect()->back()->withInput()->withErrors($errors);
         }
 
