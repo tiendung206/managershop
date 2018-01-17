@@ -12,11 +12,6 @@ class RegisterController extends Controller
          return view('auth.register');
     }
 
-    public function create()
-    {
-         return view('auth.register');
-    }
-
     public function store(Request $request)
     {
         $this-> validate($request,
@@ -32,7 +27,6 @@ class RegisterController extends Controller
                 'password.required' =>' Bạn Chưa Mật Khẩu',
                 'password.min' =>' Mật Khẩu Ít Nhất Là 8 Ký Tự'
             ]);
-
 
         $users = new User();
         $users->name = $request->username;

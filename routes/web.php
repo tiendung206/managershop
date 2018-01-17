@@ -60,6 +60,11 @@
 
 
 			});
+			// quản lý đơn hàng
+			Route::group(['prefix'=>'donhang'],function()
+			{
+				Route::get('list',['as'=>'admin.order.list','uses'=>'OderController@index']);
+			});
 		});
 		Route::get('/logout',['as'=>'getLogout', 'uses'=>'Auth\LoginController@getLogout']);
 
