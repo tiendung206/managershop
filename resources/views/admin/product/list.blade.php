@@ -46,9 +46,9 @@
 										<th>Trạng thái</th>
 										<th>Stock</th>
 										<th>Hình ảnh</th>
-										<th>Nội dung</th>
-										<th>Xóa</th>
+										<th>Nội dung</th>										
 										<th>Sửa</th>
+										<th>Xóa</th>
 									</tr>
 								</thead>
 								<tbody>										
@@ -74,8 +74,9 @@
 											<td>{{$pro->stock}}</td>
 											<td><img src="{{url('upload/images/product/')}}/{{$pro->image}}" width="50px" height="50px"></td>	
 											<td>{{$pro->content}}</td>
+											<td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="edit/{{$pro->id}}">Edit</a></td>
 											<td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="delete/{{$pro->id}}" onclick="xacnhanxoa()"> Delete</a></td>
-                            				<td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="edit/{{$pro->id}}">Edit</a></td>
+                            				
 										</tr>
 									@endforeach
 								</tbody>
