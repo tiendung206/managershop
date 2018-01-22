@@ -19,13 +19,13 @@
 	                                	<option selected="">--- Chọn Loại Danh Mục Sản Phẩm --</option>
 	                                	@foreach($category as $cat)
 	                                		@if($product->cat_id ==  $cat->id)           
-							                     <option value="{{$cat->id}}" selected="true">
-							                      {{$cat->name}}
-							                     </option>
+								                    <option value="{{$cat->id}}" selected="true">
+								                    	{{$cat->name}}
+								                    </option>
 							                    @else
-							                      <option value="{{$cat->id}}">
-							                      {{$cat->name}}
-							                     </option>
+								                    <option value="{{$cat->id}}">
+								                    	{{$cat->name}}
+								                    </option>
 							                    @endif
 	                                	@endforeach  
 	                                </select>
