@@ -1,14 +1,18 @@
 @extends('admin.master')
 @section('content')
+<style type="text/css">
+	.icon_detail{ position:relative; top:-40px; left:-20px }
+	
+</style>
 		<div id="page-wrapper">
+			<form action="" method="POST" enctype="multipart/form-data">
+	         {{csrf_field()}}
 			<div class="graphs">
-				<h3 class="blank1">Sửa Sản Phẩm</h3> 
+				<h3 class="blank1">Sửa Sản Phẩm</h3> 				
 				<div class="col-md-8">
 					<div class="xs tabls">
 						<div class="panel panel-primary" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
-							<div class="col-lg-7" style="padding-bottom:120px">
-	                        <form action="" method="POST" enctype="multipart/form-data">
-	                        	{{csrf_field()}}
+							<div class="col-lg-7" style="padding-bottom:120px">	                        
 	                        	<div class="form-group">
 	                                <label>Danh mục : </label>
 	                                <select name="category" class="form-control">
@@ -75,7 +79,6 @@
 	                                <input class="form-control" name="status"  value="{{old('txtname',isset($product) ? $product['status'] : null)}}" />
 	                                <p style="color: red">{{ $errors->first('status') }}</p>
 	                            </div>  
-
 	                            <button type="submit" class="btn btn-primary">Sửa Sản Phẩm</button>
 	                            <button type="reset" class="btn btn-default">Làm Lại</button>
 	                        <form>
@@ -83,6 +86,15 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-4">
+					@foreach ($imagesproduct as $item) 
+						<img src="{{url('upload/images/product/detail/')}}/{{$item->images}}" >
+						<a href="" id="detail_img" class="btn btn-danger btn_circle icon_detail" onclick=""><i class="fa fa-times"></i></a>
+					@endforeach
+					
+				</div>
 			</div>
+			 <form>
 		</div>
 @endsection

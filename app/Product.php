@@ -9,7 +9,7 @@ class Product extends Model
      protected $table='product';
 	protected $primaryKey = 'id';
 
-	protected $fillable=['name','description','price','sale','quanlity','status','stock','image','content'];
+	protected $fillable=['name','description','price','sale','quanlity','status','stock','image','content','salefrom','saleto'];
 
 	public $timestamps = false; 
 
@@ -19,6 +19,6 @@ class Product extends Model
 	}
 	public function productimages()
 	{
-		return $this->hasMany('App\Productimage','id');
+		return $this->hasMany('App\Productimage','product_id');
 	}
 }

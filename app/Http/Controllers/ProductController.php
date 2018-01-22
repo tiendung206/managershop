@@ -8,8 +8,8 @@ use App\Product;
 use App\Category;
 use App\Http\Requests\ProductRequest;
 use Input;
-use File;
 use App\Productimage;
+use Illuminate\Http\UploadedFile;
 
 class ProductController extends Controller
 {
@@ -20,7 +20,7 @@ class ProductController extends Controller
       
         // tìm kiếm tên sản phẩm và giá sản phẩm
         
-        $data = Product::where('name','like',"%$seach%")->orWhere('price','like',"%$seach%")->paginate(5);
+        $data = Product::where('name','like',"%$seach%")->orWhere('price','like',"%$seach%")->paginate(10);
         return view('admin.product.list',['data'=>$data,'seach'=>$seach]);
        
     }
@@ -46,36 +46,41 @@ class ProductController extends Controller
         $product->description = $request->description;
         $product->price = $request->price;
         $product->sale = $request->sale;
+        // $product->salefrom = date_add('1998-01-02') ;
+        // $product->saleto = date_add('1998-01-02') ;
         $product->quanlity = $request->qty;
         $product->status = $request->status;
         $product->stock = $request->stock;
         $product->content = $request->content;
         $product->image =  $file_name ;
-    
+
+        $product->save();
+        $product_id= $product->id;
         // detail image
         
-        if (Input::hasFile('images_product')) 
+        if ($request->hasFile('images_product')) 
         {
-           foreach (Input::file('images_product') as $file) 
+            
+           foreach ($request->file('images_product') as $file) 
             {
                $images_product = new Productimage();
                if(isset($file))
                {
-                $images_product->images=$file->getClientOriginalName();
-               $images_product->product_id=$product->id;
-               $file->move('upload/images/product/detail/',$file->getClientOriginalName());
-               $images_product->save();
+                    $images_product->images=$file->getClientOriginalName();
+                    $images_product->product_id=$product_id;
+                    $file->move('upload/images/product/detail/',$images_product->images);
+                    $images_product->save();
                }            
            }
-        }
-        $product->save();
-        return redirect('product/list')->with(['success','Bạn Đã Thêm Thành Công ! ']);
+        }        
+        return redirect('product/list')->with('success','Bạn Đã Thêm Thành Công ! ');
     }
     public function edit($id)
     {
         $category=Category::All();
         $product=Product::find($id);
-        return view('admin.product.edit',['product'=>$product,'category'=>$category]);
+        $imagesproduct=Product::find($id)->productimages;
+        return view('admin.product.edit',['product'=>$product,'category'=>$category,'imagesproduct'=>$imagesproduct]);
     }
     public function update(Request $request, $id)
     {
@@ -97,9 +102,7 @@ class ProductController extends Controller
         $product->status = $request->status;
         $product->stock = $request->stock;
         $product->image =  '7559.jfif' ;
-        $product->content = $request->content;  
-       
-
+        $product->content = $request->content; 
         $product->save();
         return redirect('product/list')->with('success','Bạn đã Sửa thành công');
     }
