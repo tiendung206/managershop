@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 17, 2018 lúc 02:36 PM
+-- Thời gian đã tạo: Th1 22, 2018 lúc 01:45 PM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.2.0
 
@@ -70,6 +70,22 @@ CREATE TABLE `image_product` (
   `product_id` int(8) DEFAULT NULL,
   `images` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `image_product`
+--
+
+INSERT INTO `image_product` (`id`, `product_id`, `images`) VALUES
+(1, 16, 'sss.jfif'),
+(2, 17, 'sss.jfif'),
+(3, 18, 'tải xuống.jfif'),
+(4, 20, 'images.jfif'),
+(5, 20, 'images (2).jfif'),
+(6, 20, 'images (1).jfif'),
+(7, 21, 'ffff.jfif'),
+(8, 21, 'images (1).jfif'),
+(9, 21, 'tải xuống.jfif'),
+(10, 21, 'images (2).jfif');
 
 -- --------------------------------------------------------
 
@@ -152,8 +168,8 @@ CREATE TABLE `product` (
   `stock` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `salefrom` date NOT NULL,
-  `saleto` date NOT NULL
+  `salefrom` date DEFAULT NULL,
+  `saleto` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -169,11 +185,19 @@ INSERT INTO `product` (`id`, `cat_id`, `name`, `description`, `price`, `sale`, `
 (6, 4, '111', '<p>1111</p>', '111', '111', '111', '111', '1111', '7559.jfif', '<p>1111</p>', '0000-00-00', '0000-00-00'),
 (7, 4, '111', '<p>1111</p>', '111', '111', '111', '111', '1111', '7559.jfif', '<p>1111</p>', '0000-00-00', '0000-00-00'),
 (8, 1, '11', '<p>123123</p>', '14000000', '1', '1111', '123123', '111', '7559.jfif', '<p>123123</p>', '0000-00-00', '0000-00-00'),
-(9, 1, '123123', '<p>22</p>', '1', '2', '22', '22', '22', '3.jfif', '<p>222</p>', '0000-00-00', '0000-00-00'),
+(9, 1, '7559', '<p>22</p>', '10000000', '10%', '22', '22', '22', '3.jfif', '<p>222</p>', '2018-01-01', '2018-03-31'),
 (10, 2, '123', '<p>1111</p>', '121111', '111111', '111', '1111', '1111', '7559.jfif', '<p>111</p>', '0000-00-00', '0000-00-00'),
 (11, 2, '111111', '<p>1111</p>', '11111', '1111', '1111', '1111', '111', '7559.jfif', '<p>1111</p>', '0000-00-00', '0000-00-00'),
 (12, 1, '111', '<p>1</p>', '111111', '1', '1', '1', '1', 'sss.jfif', '<p>1</p>', '0000-00-00', '0000-00-00'),
-(13, 9, 'dell 7567', '<p>111</p>', '123', '111', '111', '1', '111', 'images.jfif', '<p>111</p>', '0000-00-00', '0000-00-00');
+(13, 9, 'dell 7567', '<p>111</p>', '123', '111', '111', '1', '111', 'images.jfif', '<p>111</p>', '0000-00-00', '0000-00-00'),
+(14, 1, '11111111', '<p>111</p>', '1111111', '1111111111', '111111111', '1111', '111111111', 'images.jfif', '<p>111</p>', NULL, NULL),
+(15, 2, 'ưeqw', '<p>1</p>', '123', '1', '123', '1', '1', 'images.jfif', '<p>1</p>', NULL, NULL),
+(16, 2, 'ưeqw', '<p>1</p>', '123', '1', '123', '1', '1', 'images.jfif', '<p>1</p>', NULL, NULL),
+(17, 9, '111', '<p>1</p>', '123', '1', '111', '1', '111', 'sss.jfif', '<p>1</p>', NULL, NULL),
+(18, 9, '111', '<p>11111</p>', '111', '1111', '111', '111', '111', 'ffff.jfif', '<p>11111</p>', NULL, NULL),
+(19, 2, '111', '<p>1</p>', '1111', '111111', '111', '1', '1', 'images (2).jfif', '<p>1</p>', NULL, NULL),
+(20, 9, '123', '<p>1</p>', '1', '1', '1', '1', '1', 'ffff.jfif', '<p>1</p>', NULL, NULL),
+(21, 2, 'điẹn thoại', '<p>w</p>', '123', '123', '123', '123', '1', '18-hinh-anh-lien-minh-huyen-thoai.jpg', '<p>ww</p>', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -199,7 +223,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'do chien', 'chiendv92@gmail.com', '123123123', '1', '12', NULL, NULL),
 (5, 'Đỗ Văn Chiến', 'admin@gmail.com', '9c2dc042a37d2312c5803e0114eb8804', '1', NULL, '2018-01-07 20:26:01', '2018-01-07 20:26:01'),
-(6, 'chiendv1992@gmail.com', 'chiendv1992@gmail.com', '$2y$10$dJfzOBljhELTtOAOqcbuB.Vo4d6FiuwZI8hFHM7t2exFnBIavNyke', '1', '0jTgWJxbwLXF97W6Gh3k9AzAkQ8AT2V17cS4Y4VTvAXsc91i6eYZpcxWuIEb', NULL, NULL),
+(6, 'chiendv1992@gmail.com', 'chiendv1992@gmail.com', '$2y$10$dJfzOBljhELTtOAOqcbuB.Vo4d6FiuwZI8hFHM7t2exFnBIavNyke', '1', 'kZpENsqPjTLzEcCH78cUemHdkUa1nQike5VSzlLlklRoyEjAmnnBTtbTfBIS', NULL, NULL),
 (7, 'do văn chien', 'chien@gmail.com', '$2y$10$6D8rMIv.loKH.UX82uUCYOeFp2Z3GmgmxN1MJ2a76b7LeqkTDuwS2', '1', 'P0cyvmMWgRRsb4Wf5KJ2WitidpzarCTOY8XkpfWtnwJenivr78ko4SB9wAT2', NULL, NULL);
 
 --
@@ -276,7 +300,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT cho bảng `image_product`
 --
 ALTER TABLE `image_product`
-  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -288,7 +312,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
