@@ -1,5 +1,6 @@
 @extends('admin.master')
 @section('content')
+
 		<div id="page-wrapper">
 			<div class="graphs">
 				<div class="row">
@@ -30,7 +31,7 @@
 								</div><!-- /.col-lg-6 -->
 							</div><!-- /.row -->
 							<div class="col-md-12">&nbsp</div>
-								
+								{{ date(' H:i:s , d-m-Y')}}
 							<table class="table table-striped  table-bordered" align="center">
 								<thead>
 									<tr class="success">
@@ -50,6 +51,7 @@
 										<th>Sửa</th>
 										<th>Xóa</th>
 									</tr>
+									
 								</thead>
 								<tbody>										
 									<?php $stt=1  ?>										 
