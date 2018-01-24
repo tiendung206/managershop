@@ -64,9 +64,18 @@
 
 			});
 			// quản lý đơn hàng
-			Route::group(['prefix'=>'donhang'],function()
+			Route::group(['prefix'=>'order'],function()
 			{
-				Route::get('list',['as'=>'admin.order.list','uses'=>'OderController@index']);
+				Route::get('list',['as'=>'admin.order.list','uses'=>'OrderController@index']);
+				Route::post('list',['as'=>'admin.order.list','uses'=>'OrderController@index']);	
+
+				Route::get('create',['as'=>'admin.order.create','uses'=>'OrderController@create']);
+				Route::post('create',['as'=>'admin.order.store','uses'=>'OrderController@store']);
+
+				Route::get('edit/{id}',['as'=>'admin.order.edit','uses'=>'OrderController@edit']);
+				Route::post('edit/{id}',['as'=>'admin.order.update','uses'=>'OrderController@update']);
+				
+				Route::get('delete/{id}',['as'=>'admin.order.destroy','uses'=>'OrderController@destroy']);
 			});
 		});
 

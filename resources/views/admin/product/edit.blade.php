@@ -52,7 +52,7 @@
 	                            </div>
 	                            <div class="form-group" > 
 					              <label>Hình Ảnh Hiện Tại</label>           
-					              <img src="{{url('upload/images/product/')}}/{{$product->image}}" class="image">
+					              <img width="100%" src="{{url('upload/images/product/')}}/{{$product->image}}" class="image">
 					          </div>
 	                            <div class="form-group">
 					              <input type="file" name="image">
@@ -89,8 +89,8 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-4">
 					@foreach ($imagesproduct as $item) 
-						<img src="{{url('upload/images/product/detail/')}}/{{$item->images}}" >
-						<a href="" id="detail_img" class="btn btn-danger btn_circle icon_detail" onclick=""><i class="fa fa-times"></i></a>
+						<img width="200px" style="margin: 10px" src="{{url('upload/images/product/detail/')}}/{{$item->images}}" >
+						<a href="" id="{{$item->id}}" class="btn btn-danger btn_circle icon_detail" onclick=""><i class="fa fa-times"></i></a>
 					@endforeach
 					
 				</div>
@@ -98,3 +98,10 @@
 			 <form>
 		</div>
 @endsection
+
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.get("")
+	}
+</script> -->

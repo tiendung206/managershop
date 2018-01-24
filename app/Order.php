@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Oder extends Model
+class Order extends Model
 {
     
     protected $table='order';
@@ -15,6 +15,9 @@ class Oder extends Model
 	public $timestamps = false; 
 	public function orderdetail()
 	{
-		return $this->hasMany('App\Order','id');
+		return $this->belongsTo('App\Orderdetail','product_id');
+	}
+	public function product(){
+		return $this->belongsTo('App\Product','id');
 	}
 }
