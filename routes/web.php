@@ -10,9 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 
-*/		Route::get('/', function () {
-			    return view('welcome');
-			});
+*/		
 
 		// Đăng nhập
 					
@@ -77,11 +75,33 @@
 				
 				Route::get('delete/{id}',['as'=>'admin.order.destroy','uses'=>'OrderController@destroy']);
 			});
+
+			// quản lý banner
+			Route::group(['prefix'=>'banner'],function()
+			{
+				Route::get('list',['as'=>'admin.banner.list','uses'=>'BannerController@index']);
+				Route::post('list',['as'=>'admin.banner.list','uses'=>'BannerController@index']);	
+
+				Route::get('create',['as'=>'admin.banner.create','uses'=>'BannerController@create']);
+				Route::post('create',['as'=>'admin.banner.store','uses'=>'BannerController@store']);
+
+				Route::get('edit/{id}',['as'=>'admin.banner.edit','uses'=>'BannerController@edit']);
+				Route::post('edit/{id}',['as'=>'admin.banner.update','uses'=>'BannerController@update']);
+				
+				Route::get('delete/{id}',['as'=>'admin.banner.destroy','uses'=>'BannerController@destroy']);
+			});
+
+			
+
 		});
 
 		Route::get('/logout',['as'=>'getLogout', 'uses'=>'Auth\LoginController@getLogout']);
 
-
-
+		// fontend
+		
+			//danh sach san phẩm
+			Route::get('/', ['as'=>'fontend.layout.home','uses'=>'IndexController@indexproduct']);
+			// 
+			
 
 

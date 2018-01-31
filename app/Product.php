@@ -21,4 +21,8 @@ class Product extends Model
 	{
 		return $this->hasMany('App\Productimage','product_id');
 	}
+	public function orderdetail()
+	{
+		return $this->hasMany('App\Orderdetail','id');
+	}
 }

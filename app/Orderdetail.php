@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Oderdetail extends Model
+class Orderdetail extends Model
 {
      protected $table='orderdetail';
 	protected $primaryKey = 'id';
@@ -15,6 +15,11 @@ class Oderdetail extends Model
 
 	public function order()
 	{
-		return $this->belongsTo('App\Order','order_id');
+		return $this->belongsTo('App\Order','id');
 	}
+	public function product()
+	{
+		return $this->belongsTo('App\Product','product_id');
+	}
+}
 	

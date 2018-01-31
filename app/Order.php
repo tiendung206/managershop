@@ -13,11 +13,17 @@ class Order extends Model
 	protected $fillable=['orderdate','shippeddate','total','status'];
 
 	public $timestamps = false; 
+
 	public function orderdetail()
 	{
-		return $this->belongsTo('App\Orderdetail','product_id');
+		return $this->hasMany('App\Orderdetail','order_id');
 	}
-	public function product(){
+	public function product()
+	{
 		return $this->belongsTo('App\Product','id');
+	}
+	public function customer()
+	{
+		return $this->belongsTo('App\Customer','customer_id');
 	}
 }

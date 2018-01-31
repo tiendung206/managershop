@@ -12,7 +12,7 @@
 							<form method="post" action="{{url('admin/login')}}">
 								{{csrf_field()}}
 							@if(session('err'))
-			                     <div class="alert alert-success">
+			                     <div class="alert alert-danger">
 			                        	{{session('err')}}
 			                     </div>                       
 	                    	@endif 

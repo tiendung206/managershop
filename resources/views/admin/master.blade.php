@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<li class="active"><a href="{{url('dashboard')}}"><i class="lnr lnr-power-switch"></i><span>Dashboard</span></a></li>
 						<li ><a href="{{url('category/list')}}"><i class="lnr lnr-cog"></i><span>Danh Mục</span></a></li>
 						<li><a href="{{url('product/list')}}"><i class="lnr lnr-spell-check"></i> <span>Sản Phẩm</span></a></li>
-						<li><a href="{{url('category/list')}}"><i class="lnr lnr-menu"></i> <span>Đơn Hàng</span></a></li>              
+						<li><a href="{{url('order/list')}}"><i class="lnr lnr-menu"></i> <span>Đơn Hàng</span></a></li>              
 						<li class="menu-list"><a href="#"><i class="lnr lnr-envelope"></i> <span>Thống kê</span></a>
 							<ul class="sub-menu-list">
 								<li><a href="inbox.html">Inbox</a> </li>
