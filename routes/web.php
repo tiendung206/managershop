@@ -28,8 +28,12 @@
 
 		{
 			// bang dieu khien
-			Route::get('dashboard',function(){
-				return view ('admin.dashboard');
+			
+			Route::group(['prefix'=>'dashboard'], function()
+			{
+				Route::get('/',['as'=>'admin.dashboard','uses'=>'DoashboardController@index']);
+
+					
 			});
 			// category
 			Route::group(['prefix'=>'category'], function()

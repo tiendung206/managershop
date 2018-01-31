@@ -10,7 +10,7 @@
 								<div class="stats">
 								  <h5>45 <span>%</span></h5>
 								  <div class="grow">
-									<p>Growth</p>
+									<p>Đơn hàng</p>
 								  </div>
 								</div>
 							</div>

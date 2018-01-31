@@ -12,4 +12,5 @@ class IndexController extends Controller
         $indexproduct=Product::get();
         return view ('fontend.layout.home',['indexproduct'=>$indexproduct]);
     }
+    
 }

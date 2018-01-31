@@ -54,8 +54,8 @@
 													{{' Đã Thanh Toán '}}
 												@endif
 											</td>
-											<td></td>
-											<td></td>											
+											<td>{{$or->order->total}}</td>
+											<td>{{number_format(($or->order->total)*($or->product->price))}}</td>											
 											
 											<td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="delete/{{$or->id}}" onclick="xacnhanxoa()"> Delete</a></td>
                             				

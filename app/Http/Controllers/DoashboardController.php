@@ -3,45 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
-use App\Product;
-use App\Category;
 use App\Order;
-use App\Orderdetail;
-use App\Customer;
-use Input;
 
-
-class OrderController extends Controller
+class DoashboardController extends Controller
 {
+  
     public function index()
     {
-       
-        $orderdetail = Orderdetail::all();       
-        return view('admin.order.list',['orderdetail'=>$orderdetail]);
+        $order=Order::get()->all();
+        return view('admin.dashboard',compact($order));
     }
+
+    
     public function create()
     {
-        
        
     }
+
+    
     public function store(Request $request)
     {
-
-        
+        //
     }
+
+    
+    public function show($id)
+    {
+        //
+    }
+
+    
     public function edit($id)
     {
-       
+        //
     }
+
+    
     public function update(Request $request, $id)
     {
-      
+        //
     }
+
     public function destroy($id)
     {
-       
+        //
     }
-   
 }
-
