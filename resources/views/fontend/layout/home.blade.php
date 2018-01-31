@@ -8,9 +8,17 @@
 
                 <div class="col-md-12">
 
-                    <div class="box">
-                        <h1>Ladies</h1>
-                        <p>In our Ladies department we offer wide selection of the best products we have found and carefully selected worldwide.</p>
+                    <div class="container">
+                        <div class="col-md-12">
+                            <div id="main-slider">
+                                @foreach($banner as $bn)
+                                <div class="item">
+                                    <img src="{{url('upload/images/banner/')}}/{{$bn->image}}" alt="" class="img-responsive">
+                                </div>
+                               @endforeach
+                            </div>
+                            <!-- /#main-slider -->
+                        </div>
                     </div>
 
                     <div class="box info-bar">
@@ -45,8 +53,8 @@
 
                     <div class="row products">
                     	@foreach($indexproduct as $product)
-		                 	<div class="col-md-3 col-sm-4">
-	                            <div class="product">
+		                 	<div class="col-md-3 col-sm-4" >
+	                            <div class="product" style="height: 420px">
 	                                <div class="flip-container">
 	                                    <div class="flipper">
 	                                        <div class="front" >
@@ -64,7 +72,7 @@
 	                                <a href="detail.html" class="invisible">
 	                                    <img src="{{url('upload/images/product/')}}/{{$product->image}}" alt="" class="img-responsive">
 	                                </a>
-	                                <div class="text">
+	                                <div class="text" style="">
 	                                    <h3><a href="detail.html">{{$product->name}}</a></h3>
                                         @if($product->sale==0)
 	                                        <p class="price"> {{number_format($product->price)}}</p>
