@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use App\Orderdetail;
 
 class DoashboardController extends Controller
 {
   
     public function index()
     {
-        $order=Order::get()->all();
-        return view('admin.dashboard',compact($order));
+        $earnInDay = Orderdetail::join('order','orderdetail.order_id','order.id')->where('shippeddate',date('y-m-d'))->sum('total');
+        return view('admin.dashboard',['earnInDay'=>$earnInDay]);
     }
 
     

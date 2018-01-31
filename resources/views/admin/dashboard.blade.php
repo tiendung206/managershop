@@ -60,7 +60,7 @@
 							<h3>TODAY'S STATS</h3>
 							<p>Duis aute irure dolor in reprehenderit.</p>
 							<ul>
-								<li>Earning: $400 USD</li>
+								<li>Earning: {{$earnInDay}}</li>
 								<li>Items Sold: 20 Items</li>
 								<li>Last Hour Sales: $34 USD</li>
 							</ul>
