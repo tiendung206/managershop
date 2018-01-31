@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th1 22, 2018 lúc 01:45 PM
+-- Thời gian đã tạo: Th1 31, 2018 lúc 01:17 PM
 -- Phiên bản máy phục vụ: 10.1.29-MariaDB
 -- Phiên bản PHP: 7.2.0
 
@@ -21,6 +21,28 @@ SET time_zone = "+00:00";
 --
 -- Cơ sở dữ liệu: `managershop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `banner`
+--
+
+CREATE TABLE `banner` (
+  `id` int(8) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `banner`
+--
+
+INSERT INTO `banner` (`id`, `image`, `status`) VALUES
+(1, 'banner3.jpg', 1),
+(2, 'banner2.jpg', 1),
+(3, 'banner1.jpg', 1),
+(4, 'banner1.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -58,6 +80,14 @@ CREATE TABLE `customer` (
   `phone` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `customer`
+--
+
+INSERT INTO `customer` (`id`, `name`, `address`, `phone`, `email`) VALUES
+(1, 'chien', 'hai duong', '0979723746', 'cheindv92@gmail.com'),
+(2, 'duc', 'hd', '123123123', '123@GMAIL.COM');
 
 -- --------------------------------------------------------
 
@@ -109,6 +139,31 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `order`
+--
+
+CREATE TABLE `order` (
+  `id` int(8) NOT NULL,
+  `customer_id` int(8) NOT NULL,
+  `user_id` int(8) NOT NULL,
+  `orderdate` date NOT NULL,
+  `shippeddate` date NOT NULL,
+  `total` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `order`
+--
+
+INSERT INTO `order` (`id`, `customer_id`, `user_id`, `orderdate`, `shippeddate`, `total`, `status`) VALUES
+(1, 1, 6, '2018-01-02', '2018-01-19', '', ''),
+(2, 1, 7, '2018-01-03', '2018-01-27', '', ''),
+(3, 2, 6, '2018-01-01', '2018-01-31', '', '');
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `orderdetail`
 --
 
@@ -122,21 +177,14 @@ CREATE TABLE `orderdetail` (
   `total` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
-
 --
--- Cấu trúc bảng cho bảng `orders`
+-- Đang đổ dữ liệu cho bảng `orderdetail`
 --
 
-CREATE TABLE `orders` (
-  `id` int(8) NOT NULL,
-  `customer_id` int(8) NOT NULL,
-  `user_id` int(8) NOT NULL,
-  `orderdate` date NOT NULL,
-  `shippeddate` date NOT NULL,
-  `total` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `orderdetail` (`id`, `product_id`, `order_id`, `quantity`, `price`, `sale`, `total`) VALUES
+(1, 17, 1, 2, '', '', ''),
+(2, 5, 2, 2, '', '', ''),
+(3, 13, 3, 1, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -168,8 +216,8 @@ CREATE TABLE `product` (
   `stock` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `content` text NOT NULL,
-  `salefrom` date DEFAULT NULL,
-  `saleto` date DEFAULT NULL
+  `salefrom` datetime DEFAULT NULL,
+  `saleto` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -177,19 +225,19 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `cat_id`, `name`, `description`, `price`, `sale`, `quanlity`, `status`, `stock`, `image`, `content`, `salefrom`, `saleto`) VALUES
-(1, 1, 'HP compaq 1', '<p>M&ocirc; ta chị tiết</p>', '20000000', '10', '12', '1', '111', '7559.jfif', '<p>noi dung</p>', '0000-00-00', '0000-00-00'),
-(2, 2, 'ád', '<p>&aacute;d</p>', '111111', '0', '14', '111', 'qqq', '7559.jfif', '<p>qqqqq</p>', '0000-00-00', '0000-00-00'),
-(3, 2, 'ád', '<p>&aacute;d</p>', '222222', '123123123', 'qqq', '111', '111', '7559.jfif', '<p>qqqqq</p>', '0000-00-00', '0000-00-00'),
-(4, 2, 'S56', '<p>&aacute;d</p>', '123123123', '123123123', '20', '111', 'qqq', '7559.jfif', '<p>qqqqq</p>', '0000-00-00', '0000-00-00'),
-(5, 9, 'Dell inprison 7559', '<p>core&nbsp;i7</p>', '18000000', '0', '10', '1', '1', '7559.jfif', '<p>đ&acirc;y l&agrave; sản phẩm ra năm đầu 2017</p>', '0000-00-00', '0000-00-00'),
-(6, 4, '111', '<p>1111</p>', '111', '111', '111', '111', '1111', '7559.jfif', '<p>1111</p>', '0000-00-00', '0000-00-00'),
-(7, 4, '111', '<p>1111</p>', '111', '111', '111', '111', '1111', '7559.jfif', '<p>1111</p>', '0000-00-00', '0000-00-00'),
-(8, 1, '11', '<p>123123</p>', '14000000', '1', '1111', '123123', '111', '7559.jfif', '<p>123123</p>', '0000-00-00', '0000-00-00'),
-(9, 1, '7559', '<p>22</p>', '10000000', '10%', '22', '22', '22', '3.jfif', '<p>222</p>', '2018-01-01', '2018-03-31'),
-(10, 2, '123', '<p>1111</p>', '121111', '111111', '111', '1111', '1111', '7559.jfif', '<p>111</p>', '0000-00-00', '0000-00-00'),
-(11, 2, '111111', '<p>1111</p>', '11111', '1111', '1111', '1111', '111', '7559.jfif', '<p>1111</p>', '0000-00-00', '0000-00-00'),
-(12, 1, '111', '<p>1</p>', '111111', '1', '1', '1', '1', 'sss.jfif', '<p>1</p>', '0000-00-00', '0000-00-00'),
-(13, 9, 'dell 7567', '<p>111</p>', '123', '111', '111', '1', '111', 'images.jfif', '<p>111</p>', '0000-00-00', '0000-00-00'),
+(1, 1, 'HP compaq 1', '<p>M&ocirc; ta chị tiết</p>', '20000000', '0', '12', '1', '111', '7559.jfif', '<p>noi dung</p>', '2018-01-02 06:16:26', '2018-01-02 00:00:00'),
+(2, 2, 'ád', '<p>&aacute;d</p>', '10000000', '0', '14', '111', 'qqq', '7559.jfif', '<p>qqqqq</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(3, 2, 'ád', '<p>&aacute;d</p>', '222222', '20', 'qqq', '111', '111', '7559.jfif', '<p>qqqqq</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(4, 2, 'S56', '<p>&aacute;d</p>', '123123123', '10', '20', '111', 'qqq', '7559.jfif', '<p>qqqqq</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(5, 9, 'Dell inprison 7559', '<p>core&nbsp;i7</p>', '18000000', '0', '10', '1', '1', '7559.jfif', '<p>đ&acirc;y l&agrave; sản phẩm ra năm đầu 2017</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(6, 4, '111', '<p>1111</p>', '111', '10', '111', '111', '1111', '7559.jfif', '<p>1111</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(7, 4, '111', '<p>1111</p>', '111', '111', '111', '111', '1111', '7559.jfif', '<p>1111</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(8, 1, '11', '<p>123123</p>', '14000000', '1', '1111', '123123', '111', '7559.jfif', '<p>123123</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(9, 1, '7559', '<p>22</p>', '10000000', '10', '22', '22', '22', '7559.jfif', '<p>222</p>', '2018-01-01 00:00:00', '2018-03-31 00:00:00'),
+(10, 2, '123', '<p>1111</p>', '121111', '111111', '111', '1111', '1111', '7559.jfif', '<p>111</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 2, '111111', '<p>1111</p>', '11111', '1111', '1111', '1111', '111', '7559.jfif', '<p>1111</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(12, 1, '111', '<p>1</p>', '111111', '1', '1', '1', '1', 'sss.jfif', '<p>1</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(13, 9, 'dell 7567', '<p>111</p>', '123', '111', '111', '1', '111', 'images.jfif', '<p>111</p>', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (14, 1, '11111111', '<p>111</p>', '1111111', '1111111111', '111111111', '1111', '111111111', 'images.jfif', '<p>111</p>', NULL, NULL),
 (15, 2, 'ưeqw', '<p>1</p>', '123', '1', '123', '1', '1', 'images.jfif', '<p>1</p>', NULL, NULL),
 (16, 2, 'ưeqw', '<p>1</p>', '123', '1', '123', '1', '1', 'images.jfif', '<p>1</p>', NULL, NULL),
@@ -223,12 +271,18 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `level`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'do chien', 'chiendv92@gmail.com', '123123123', '1', '12', NULL, NULL),
 (5, 'Đỗ Văn Chiến', 'admin@gmail.com', '9c2dc042a37d2312c5803e0114eb8804', '1', NULL, '2018-01-07 20:26:01', '2018-01-07 20:26:01'),
-(6, 'chiendv1992@gmail.com', 'chiendv1992@gmail.com', '$2y$10$dJfzOBljhELTtOAOqcbuB.Vo4d6FiuwZI8hFHM7t2exFnBIavNyke', '1', 'kZpENsqPjTLzEcCH78cUemHdkUa1nQike5VSzlLlklRoyEjAmnnBTtbTfBIS', NULL, NULL),
+(6, 'chiendv1992@gmail.com', 'chiendv1992@gmail.com', '$2y$10$dJfzOBljhELTtOAOqcbuB.Vo4d6FiuwZI8hFHM7t2exFnBIavNyke', '1', 'q221shXJ2BtEdIvjN42TJsZrr8DTXbJ4I9S6cCV9z4lV5Zlf60rIVnzjvbKV', NULL, NULL),
 (7, 'do văn chien', 'chien@gmail.com', '$2y$10$6D8rMIv.loKH.UX82uUCYOeFp2Z3GmgmxN1MJ2a76b7LeqkTDuwS2', '1', 'P0cyvmMWgRRsb4Wf5KJ2WitidpzarCTOY8XkpfWtnwJenivr78ko4SB9wAT2', NULL, NULL);
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
+
+--
+-- Chỉ mục cho bảng `banner`
+--
+ALTER TABLE `banner`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Chỉ mục cho bảng `category`
@@ -256,22 +310,22 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Chỉ mục cho bảng `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `user_id_2` (`user_id`),
+  ADD KEY `user_id_3` (`user_id`);
+
+--
 -- Chỉ mục cho bảng `orderdetail`
 --
 ALTER TABLE `orderdetail`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`),
   ADD KEY `order_id` (`order_id`);
-
---
--- Chỉ mục cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `user_id_2` (`user_id`),
-  ADD KEY `user_id_3` (`user_id`);
 
 --
 -- Chỉ mục cho bảng `product`
@@ -289,6 +343,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
 --
+
+--
+-- AUTO_INCREMENT cho bảng `banner`
+--
+ALTER TABLE `banner`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
@@ -331,18 +391,18 @@ ALTER TABLE `image_product`
   ADD CONSTRAINT `image_product_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Các ràng buộc cho bảng `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `order_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Các ràng buộc cho bảng `orderdetail`
 --
 ALTER TABLE `orderdetail`
   ADD CONSTRAINT `orderdetail_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orderdetail_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Các ràng buộc cho bảng `orders`
---
-ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `orderdetail_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Các ràng buộc cho bảng `product`
